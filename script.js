@@ -38,7 +38,8 @@ for(let i = 9; i < 18; i++) {
 // parseInt will then turn it into a number which is assigned to the blockTime that's when the rest of the function will add and remove classes from
 // the css file which styles the timeblocks depending on the time of the current day for the user.
 function timeBlocks() {
-    var currentTime = dayjs().hour()
+    var currentTime = dayjs().hour();
+    // var currentTime = 11; // tests the function.
     $('.time-block').each(function(){
         var blockTime = parseInt($( this ).attr('id').split('-')[1])
         if(blockTime < currentTime) {
