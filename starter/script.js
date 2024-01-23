@@ -20,7 +20,22 @@ for(let i = 9; i < 18; i++) {
     $('#hour-' + i +' .description').val(localStorage.getItem('hour-' + i))
 }
 
-
+function timeBlocks() {
+    var currentTime = dayjs().hour()
+    $('.time-block').each(function(){
+        var blockTime = parseInt($( this ).attr('id').split('-')[1])
+        if(blockTime < currentTime) {
+            $( this ).addClass('past')
+        } else if (blockTime === currentTime) {
+            $( this ).removeClass('past')
+            $( this ).addClass('present')
+        } else {
+            $( this ).removeClass('past')
+            $( this ).removeClass('present')
+            $( this ).addClass('future')
+        }
+    })
+}
 
 timeBlocks();
 setInterval(timeBlocks,30000);
