@@ -1,5 +1,6 @@
 var currentDate = $('#currentDay');
 var displayTime = $('#container');
+var rowCss = $('.row');
 
 var eachHour = dayjs().get('hour');
 
@@ -9,14 +10,17 @@ function displayCurrentDate() {
 }
 displayCurrentDate();
 
-function timeBlocks() {
-    for (var i = 9; i < 20; i++) {
-        displayTime.add( $( "ul li" ) );
-        $("ul").css({ 'list-style-type': 'none', margin: '0', padding: '0', width: '60%' });
-        $("li").css({ 'margin': '0 3px 3px 3px', padding: '0.4em', 'padding-left': '1.5em', 'font-size': '1.4em', height: '18px' });
+$('.saveBtn').on('click',function(){
+    var time = $( this ).closest('.time-block').attr('id')
+    var description = $( this ).prev('.description').val()
+    localStorage.setItem(time, description)
+})
 
-
-    }
+for(let i = 9; i < 18; i++) {
+    $('#hour-' + i +' .description').val(localStorage.getItem('hour-' + i))
 }
 
+
+
 timeBlocks();
+setInterval(timeBlocks,30000);
